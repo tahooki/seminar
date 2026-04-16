@@ -1,65 +1,110 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ChartNoAxesColumn, GitBranch, Orbit, Workflow } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="seminar-page">
+      <div className="seminar-shell">
+        <nav className="sample-nav" aria-label="메인">
+          <span className="brand-mark">Seminar Visual Lab</span>
+          <div className="sample-links">
+            <Link href="/samples/idea-cycle">Idea Cycle</Link>
+            <Link href="/samples/system-map">System Map</Link>
+            <Link href="/samples/data-story">Data Story</Link>
+            <Link href="/samples/a2ui">A2UI Deck</Link>
+          </div>
+        </nav>
+
+        <header className="hero-grid">
+          <div>
+            <p className="eyebrow">HTML Presentation Design System</p>
+            <h1 className="hero-title">한 페이지 발표자료를 그림처럼 구성하기</h1>
+            <p className="hero-description">
+              Mermaid, Rough.js, React Flow, Markmap, Observable Plot을 섞어
+              발표용 시각화 컴포넌트가 어떤 맛을 낼 수 있는지 확인하는 샘플
+              허브입니다.
+            </p>
+          </div>
+          <aside className="hero-note">
+            지금 목표는 완성된 발표 도구가 아니라, 어떤 라이브러리 조합이 이
+            프로젝트의 톤에 맞는지 빠르게 눈으로 보는 것입니다.
+          </aside>
+        </header>
+
+        <section className="stage-grid" aria-label="샘플 페이지 목록">
+          <Link className="sample-card span-3" href="/samples/idea-cycle">
+            <div>
+              <span className="card-icon">
+                <Orbit size={28} />
+              </span>
+              <h2>Idea Cycle</h2>
+              <p>
+                Rough.js 손그림 순환 다이어그램과 Mermaid 흐름도를 함께 놓은
+                Napkin 스타일 샘플.
+              </p>
+            </div>
+            <div className="tag-row">
+              <span className="tag">roughjs</span>
+              <span className="tag">mermaid</span>
+              <span className="tag">cycle</span>
+            </div>
+          </Link>
+
+          <Link className="sample-card span-3" href="/samples/system-map">
+            <div>
+              <span className="card-icon">
+                <GitBranch size={28} />
+              </span>
+              <h2>System Map</h2>
+              <p>
+                React Flow로 움직일 수 있는 시스템 맵을 만들고 Mermaid sequence로
+                설명 흐름을 보강한 샘플.
+              </p>
+            </div>
+            <div className="tag-row">
+              <span className="tag">reactflow</span>
+              <span className="tag">mermaid</span>
+              <span className="tag">architecture</span>
+            </div>
+          </Link>
+
+          <Link className="sample-card span-3" href="/samples/data-story">
+            <div>
+              <span className="card-icon">
+                <ChartNoAxesColumn size={28} />
+              </span>
+              <h2>Data Story</h2>
+              <p>
+                Observable Plot 차트와 Markmap 개념 지도를 한 발표 페이지 안에서
+                같이 쓰는 데이터 설명 샘플.
+              </p>
+            </div>
+            <div className="tag-row">
+              <span className="tag">observable plot</span>
+              <span className="tag">markmap</span>
+              <span className="tag">data</span>
+            </div>
+          </Link>
+
+          <Link className="sample-card span-3" href="/samples/a2ui">
+            <div>
+              <span className="card-icon">
+                <Workflow size={28} />
+              </span>
+              <h2>A2UI Deck</h2>
+              <p>
+                A2UI가 무엇이고 왜 필요한지, 코드적으로 무엇을 만들게 되는지
+                발표자료 형태로 정리한 HTML 덱.
+              </p>
+            </div>
+            <div className="tag-row">
+              <span className="tag">a2ui</span>
+              <span className="tag">agent ui</span>
+              <span className="tag">deck</span>
+            </div>
+          </Link>
+        </section>
+      </div>
+    </main>
   );
 }
