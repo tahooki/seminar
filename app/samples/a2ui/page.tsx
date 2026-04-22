@@ -12,10 +12,7 @@ import {
 } from "lucide-react";
 import { MermaidChart } from "@/src/presentation/components/MermaidChart";
 import { SampleShell } from "@/src/presentation/components/SampleShell";
-import {
-  CycleDiagram,
-  SketchFlow,
-} from "@/src/presentation/components/SketchDiagrams";
+import { CycleDiagram } from "@/src/presentation/components/SketchDiagrams";
 
 export const metadata: Metadata = {
   title: "A2UI 발표 덱 | Seminar Visual Lab",
@@ -117,12 +114,6 @@ flowchart LR
   AG --> U["Surface update"]
 `;
 
-const sketchFlowItems = [
-  { title: "Agent", description: "의도 생성", color: "#ef7d6c" },
-  { title: "A2UI", description: "JSON 설계도", color: "#2f80ed" },
-  { title: "Renderer", description: "네이티브 UI", color: "#6ba84f" },
-];
-
 const effectCycle = [
   { label: "UX", detail: "work screen", color: "#2f80ed" },
   { label: "Security", detail: "data only", color: "#6ba84f" },
@@ -168,6 +159,88 @@ function CodeWindow({ children }: { children: string }) {
     <pre className="code-window">
       <code>{children}</code>
     </pre>
+  );
+}
+
+function ImagegenA2UIFlow() {
+  const labelStyle = {
+    position: "absolute",
+    top: "49%",
+    display: "grid",
+    width: "22%",
+    gap: 10,
+    transform: "translateY(-50%)",
+    color: "var(--ink)",
+    pointerEvents: "none",
+  } as const;
+  const titleStyle = {
+    fontSize: "clamp(25px, 2.9vw, 38px)",
+    fontWeight: 900,
+    lineHeight: 1,
+  } as const;
+  const detailStyle = {
+    color: "var(--muted)",
+    fontSize: "clamp(15px, 1.8vw, 22px)",
+    fontWeight: 800,
+    lineHeight: 1.15,
+    wordBreak: "keep-all",
+  } as const;
+
+  return (
+    <figure
+      className="sketch-box imagegen-flow"
+      role="img"
+      aria-label="Agent가 의도를 생성하고 A2UI JSON 설계도를 거쳐 Renderer가 네이티브 UI로 바꾸는 흐름"
+      style={{
+        position: "relative",
+        width: "100%",
+        aspectRatio: "760 / 310",
+        minHeight: "clamp(300px, 34vw, 430px)",
+        margin: "34px 0 0",
+        overflow: "hidden",
+        borderRadius: 8,
+        background: "var(--surface)",
+      }}
+    >
+      <img
+        src="/images/a2ui-core-flow-imagegen.png"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center 47%",
+          filter: "saturate(0.98) contrast(1.02)",
+        }}
+      />
+      <div
+        className="imagegen-flow-label label-agent"
+        aria-hidden="true"
+        style={{ ...labelStyle, left: "11%" }}
+      >
+        <strong style={titleStyle}>Agent</strong>
+        <span style={detailStyle}>의도 생성</span>
+      </div>
+      <div
+        className="imagegen-flow-label label-a2ui"
+        aria-hidden="true"
+        style={{ ...labelStyle, left: "39%" }}
+      >
+        <strong style={titleStyle}>A2UI</strong>
+        <span style={detailStyle}>JSON 설계도</span>
+      </div>
+      <div
+        className="imagegen-flow-label label-renderer"
+        aria-hidden="true"
+        style={{ ...labelStyle, left: "68%" }}
+      >
+        <strong style={titleStyle}>Renderer</strong>
+        <span style={detailStyle}>네이티브 UI</span>
+      </div>
+    </figure>
   );
 }
 
@@ -307,7 +380,7 @@ export default function A2UIDeckPage() {
               <p>agent가 사용할 수 있는 신뢰된 컴포넌트 목록과 정책.</p>
             </div>
           </div>
-          <SketchFlow items={sketchFlowItems} />
+          <ImagegenA2UIFlow />
         </DeckSlide>
 
         <DeckSlide

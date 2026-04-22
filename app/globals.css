@@ -145,7 +145,7 @@ svg {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 0.8fr);
   gap: 32px;
   align-items: end;
   margin-bottom: 34px;
@@ -161,7 +161,7 @@ svg {
 
 .hero-title {
   margin: 0;
-  max-width: 850px;
+  max-width: 980px;
   font-size: clamp(42px, 7vw, 76px);
   line-height: 1.02;
   letter-spacing: 0;
@@ -375,6 +375,62 @@ svg {
 .sketch-box svg {
   width: 100%;
   height: 100%;
+}
+
+.imagegen-flow {
+  position: relative;
+  aspect-ratio: 760 / 310;
+  min-height: clamp(300px, 34vw, 430px);
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.imagegen-flow img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 47%;
+  filter: saturate(0.98) contrast(1.02);
+}
+
+.imagegen-flow-label {
+  position: absolute;
+  top: 49%;
+  display: grid;
+  width: 22%;
+  gap: 10px;
+  transform: translateY(-50%);
+  color: var(--ink);
+  pointer-events: none;
+}
+
+.imagegen-flow-label strong {
+  font-size: clamp(25px, 2.9vw, 38px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.imagegen-flow-label span {
+  color: var(--muted);
+  font-size: clamp(15px, 1.8vw, 22px);
+  font-weight: 800;
+  line-height: 1.15;
+  word-break: keep-all;
+}
+
+.label-agent {
+  left: 11%;
+}
+
+.label-a2ui {
+  left: 39%;
+}
+
+.label-renderer {
+  left: 68%;
 }
 
 .flow-box {

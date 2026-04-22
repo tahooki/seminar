@@ -14,6 +14,7 @@ const sampleLinks = [
   { href: "/samples/system-map", label: "System Map" },
   { href: "/samples/data-story", label: "Data Story" },
   { href: "/samples/a2ui", label: "A2UI Deck" },
+  { href: "/samples/code-agent", label: "Code Agent" },
 ];
 
 export function SampleShell({

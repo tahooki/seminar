@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { ChartNoAxesColumn, GitBranch, Orbit, Workflow } from "lucide-react";
+import {
+  Bot,
+  ChartNoAxesColumn,
+  GitBranch,
+  Orbit,
+  Workflow,
+} from "lucide-react";
 
 export default function Home() {
   return (
@@ -12,6 +18,7 @@ export default function Home() {
             <Link href="/samples/system-map">System Map</Link>
             <Link href="/samples/data-story">Data Story</Link>
             <Link href="/samples/a2ui">A2UI Deck</Link>
+            <Link href="/samples/code-agent">Code Agent</Link>
           </div>
         </nav>
 
@@ -32,6 +39,25 @@ export default function Home() {
         </header>
 
         <section className="stage-grid" aria-label="샘플 페이지 목록">
+          <Link className="sample-card span-12" href="/samples/code-agent">
+            <div>
+              <span className="card-icon">
+                <Bot size={28} />
+              </span>
+              <h2>Code Agent Evolution</h2>
+              <p>
+                Code Agent가 프롬프트, md 규칙, MCP, Skills, Harness,
+                plugins와 memory까지 이어지며 개발 작업 플랫폼으로 변해온 흐름을
+                한 페이지 발표자료로 정리한 샘플.
+              </p>
+            </div>
+            <div className="tag-row">
+              <span className="tag">code agent</span>
+              <span className="tag">workflow</span>
+              <span className="tag">one-page deck</span>
+            </div>
+          </Link>
+
           <Link className="sample-card span-3" href="/samples/idea-cycle">
             <div>
               <span className="card-icon">
