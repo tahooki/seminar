@@ -4,6 +4,7 @@ import {
   Background,
   Controls,
   MarkerType,
+  Position,
   ReactFlow,
   type Edge,
   type Node,
@@ -22,6 +23,7 @@ const nodes: Node[] = [
       ),
     },
     style: { border: "2px solid #ef7d6c", background: "#fff4e8" },
+    sourcePosition: Position.Right,
   },
   {
     id: "slides",
@@ -35,6 +37,8 @@ const nodes: Node[] = [
       ),
     },
     style: { border: "2px solid #2f80ed", background: "#eaf5ff" },
+    targetPosition: Position.Left,
+    sourcePosition: Position.Right,
   },
   {
     id: "visuals",
@@ -48,6 +52,8 @@ const nodes: Node[] = [
       ),
     },
     style: { border: "2px solid #6ba84f", background: "#edf8ea" },
+    targetPosition: Position.Left,
+    sourcePosition: Position.Right,
   },
   {
     id: "theme",
@@ -61,6 +67,8 @@ const nodes: Node[] = [
       ),
     },
     style: { border: "2px solid #9b6ee8", background: "#f3edff" },
+    targetPosition: Position.Left,
+    sourcePosition: Position.Right,
   },
   {
     id: "browser",
@@ -74,6 +82,7 @@ const nodes: Node[] = [
       ),
     },
     style: { border: "2px solid #f2c94c", background: "#fff9df" },
+    targetPosition: Position.Left,
   },
 ];
 
@@ -132,6 +141,36 @@ export function SystemFlow() {
         <Background color="#d8dde3" gap={22} />
         <Controls showInteractive={false} />
       </ReactFlow>
+      <svg className="flow-link-overlay" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <marker
+            id="system-flow-arrow"
+            markerHeight="5"
+            markerWidth="5"
+            orient="auto"
+            refX="4"
+            refY="2.5"
+          >
+            <path d="M0,0 L5,2.5 L0,5 Z" />
+          </marker>
+        </defs>
+        {[
+          ["20", "57", "33", "48"],
+          ["20", "59", "33", "68"],
+          ["43", "48", "56", "58"],
+          ["43", "68", "56", "60"],
+          ["67", "59", "80", "59"],
+        ].map(([x1, y1, x2, y2]) => (
+          <line
+            key={`${x1}-${y1}-${x2}-${y2}`}
+            x1={x1}
+            y1={y1}
+            x2={x2}
+            y2={y2}
+            markerEnd="url(#system-flow-arrow)"
+          />
+        ))}
+      </svg>
     </div>
   );
 }

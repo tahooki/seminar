@@ -10,11 +10,14 @@ type SampleShellProps = {
 };
 
 const sampleLinks = [
+  { href: "/samples/guides", label: "Guide Examples" },
   { href: "/samples/idea-cycle", label: "Idea Cycle" },
   { href: "/samples/system-map", label: "System Map" },
   { href: "/samples/data-story", label: "Data Story" },
   { href: "/samples/a2ui", label: "A2UI Deck" },
   { href: "/samples/code-agent", label: "Code Agent" },
+  { href: "/samples/ai-basic", label: "AI Agent Basic" },
+  { href: "/samples/agentic-development", label: "Agentic Dev" },
 ];
 
 export function SampleShell({

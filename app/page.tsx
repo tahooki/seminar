@@ -1,9 +1,12 @@
 import Link from "next/link";
 import {
   Bot,
+  Cable,
   ChartNoAxesColumn,
+  Compass,
   GitBranch,
   Orbit,
+  Sparkles,
   Workflow,
 } from "lucide-react";
 
@@ -19,6 +22,9 @@ export default function Home() {
             <Link href="/samples/data-story">Data Story</Link>
             <Link href="/samples/a2ui">A2UI Deck</Link>
             <Link href="/samples/code-agent">Code Agent</Link>
+            <Link href="/samples/ai-basic">AI Agent Basic</Link>
+            <Link href="/samples/agentic-development">Agentic Dev</Link>
+            <Link href="/samples/guides">Guide Examples</Link>
           </div>
         </nav>
 
@@ -39,6 +45,25 @@ export default function Home() {
         </header>
 
         <section className="stage-grid" aria-label="샘플 페이지 목록">
+          <Link className="sample-card span-12" href="/samples/guides">
+            <div>
+              <span className="card-icon">
+                <Compass size={28} />
+              </span>
+              <h2>Visual Guide Examples</h2>
+              <p>
+                Mermaid, RoughJS, Markmap, React Flow, Observable Plot,
+                Lucide를 &quot;무엇을 그리고 싶은가&quot; 기준으로 고르는 예제 페이지
+                묶음.
+              </p>
+            </div>
+            <div className="tag-row">
+              <span className="tag">guide</span>
+              <span className="tag">examples</span>
+              <span className="tag">visual picker</span>
+            </div>
+          </Link>
+
           <Link className="sample-card span-12" href="/samples/code-agent">
             <div>
               <span className="card-icon">
@@ -55,6 +80,47 @@ export default function Home() {
               <span className="tag">code agent</span>
               <span className="tag">workflow</span>
               <span className="tag">one-page deck</span>
+            </div>
+          </Link>
+
+          <Link className="sample-card span-12" href="/samples/ai-basic">
+            <div>
+              <span className="card-icon">
+                <Sparkles size={28} />
+              </span>
+              <h2>AI Agent Basics Slides</h2>
+              <p>
+                업데이트된 v4 슬라이드 이미지 16장을 한 페이지 발표 덱으로
+                보여주고, 각 장의 발표 포인트를 옆에서 같이 볼 수 있게 정리한
+                샘플.
+              </p>
+            </div>
+            <div className="tag-row">
+              <span className="tag">slides</span>
+              <span className="tag">image deck</span>
+              <span className="tag">speaker notes</span>
+            </div>
+          </Link>
+
+          <Link
+            className="sample-card span-12"
+            href="/samples/agentic-development"
+          >
+            <div>
+              <span className="card-icon">
+                <Cable size={28} />
+              </span>
+              <h2>Agentic Development Basics</h2>
+              <p>
+                LLM, Code Agent, Prompt, Agentic Loop, MCP, AGENTS.md,
+                Skill을 &quot;확률 머신의 한계를 어떻게 보완하는가&quot;라는 한
+                흐름으로 설명하는 한국어 발표 덱.
+              </p>
+            </div>
+            <div className="tag-row">
+              <span className="tag">agentic dev</span>
+              <span className="tag">mcp</span>
+              <span className="tag">skill</span>
             </div>
           </Link>
 

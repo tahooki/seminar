@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Noto_Sans_KR } from "next/font/google";
-import "@xyflow/react/dist/style.css";
 import "./globals.css";
 
 const notoSansKr = Noto_Sans_KR({
