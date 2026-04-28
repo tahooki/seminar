@@ -994,6 +994,152 @@ svg {
   text-transform: uppercase;
 }
 
+.basic-slide-viewer {
+  display: grid;
+  gap: 18px;
+}
+
+.basic-slide-stage {
+  position: relative;
+  display: grid;
+  min-height: min(760px, calc(100vh - 120px));
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #111318;
+  box-shadow: var(--shadow-soft);
+}
+
+.basic-slide-stage:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  border-radius: 0;
+}
+
+.basic-slide-toolbar {
+  position: absolute;
+  z-index: 3;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid color-mix(in srgb, #ffffff 18%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, #111318 78%, transparent);
+  padding: 8px;
+  color: #ffffff;
+  backdrop-filter: blur(14px);
+}
+
+.basic-slide-toolbar button {
+  display: inline-grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, #ffffff 16%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, #ffffff 8%, transparent);
+  color: inherit;
+  cursor: pointer;
+}
+
+.basic-slide-toolbar button:hover:not(:disabled),
+.basic-slide-toolbar button[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--accent-yellow) 72%, #ffffff);
+  background: color-mix(in srgb, var(--accent-yellow) 24%, transparent);
+}
+
+.basic-slide-toolbar button:disabled {
+  cursor: not-allowed;
+  opacity: 0.38;
+}
+
+.basic-slide-counter {
+  min-width: 62px;
+  color: color-mix(in srgb, #ffffff 88%, transparent);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.basic-slide-frame {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  place-items: center;
+  margin: 0;
+  padding: clamp(14px, 2vw, 28px);
+}
+
+.basic-slide-image {
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 160px);
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 24px 80px color-mix(in srgb, #000000 46%, transparent);
+}
+
+.basic-slide-stage:fullscreen .basic-slide-frame {
+  min-height: 100vh;
+  padding: 0;
+}
+
+.basic-slide-stage:fullscreen .basic-slide-image {
+  max-width: 100vw;
+  max-height: 100vh;
+  border-radius: 0;
+}
+
+.basic-slide-overview {
+  position: absolute;
+  inset: auto 14px 14px;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 10px;
+  max-height: min(48vh, 390px);
+  overflow: auto;
+  border: 1px solid color-mix(in srgb, #ffffff 18%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, #111318 82%, transparent);
+  padding: 12px;
+  backdrop-filter: blur(18px);
+}
+
+.basic-slide-overview button {
+  position: relative;
+  display: grid;
+  gap: 5px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  padding: 4px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.basic-slide-overview button:hover,
+.basic-slide-overview button.is-active {
+  border-color: var(--accent-yellow);
+}
+
+.basic-slide-thumb {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.basic-slide-overview span {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+  font-weight: 900;
+}
+
 .deck-outline {
   position: static;
   display: flex;
@@ -1336,6 +1482,25 @@ button[aria-label="Open Next.js Dev Tools"] {
     margin-bottom: 18px;
   }
 
+  .basic-slide-stage {
+    min-height: auto;
+  }
+
+  .basic-slide-frame {
+    min-height: auto;
+    padding-top: 74px;
+  }
+
+  .basic-slide-toolbar {
+    left: 12px;
+    right: 12px;
+    justify-content: flex-end;
+  }
+
+  .basic-slide-overview {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .code-window {
     max-height: 340px;
   }
@@ -1373,5 +1538,18 @@ button[aria-label="Open Next.js Dev Tools"] {
 
   .visual-panel {
     min-height: 300px;
+  }
+
+  .basic-slide-toolbar {
+    gap: 6px;
+  }
+
+  .basic-slide-toolbar button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .basic-slide-overview {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
