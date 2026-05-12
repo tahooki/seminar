@@ -17,13 +17,8 @@ export default function Home() {
         <nav className="sample-nav" aria-label="메인">
           <span className="brand-mark">Seminar Visual Lab</span>
           <div className="sample-links">
-            <Link href="/samples/idea-cycle">Idea Cycle</Link>
-            <Link href="/samples/system-map">System Map</Link>
-            <Link href="/samples/data-story">Data Story</Link>
-            <Link href="/samples/a2ui">A2UI Deck</Link>
             <Link href="/samples/code-agent">Code Agent</Link>
             <Link href="/samples/ai-basic">AI Agent Basic</Link>
-            <Link href="/samples/agentic-development">Agentic Dev</Link>
             <Link href="/samples/guides">Guide Examples</Link>
           </div>
         </nav>
