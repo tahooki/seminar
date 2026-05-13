@@ -13,6 +13,11 @@ const sampleLinks = [
   { href: "/samples/guides", label: "Guide Examples" },
   { href: "/samples/code-agent", label: "Code Agent" },
   { href: "/samples/ai-basic", label: "AI Agent Basic" },
+  { href: "/samples/agents", label: "Agents" },
+  { href: "/samples/mcp", label: "MCP" },
+  { href: "/samples/skill", label: "Skill" },
+  { href: "/samples/guardrails", label: "Guardrails" },
+  { href: "/samples/harness", label: "Harness" },
 ];
 
 export function SampleShell({
