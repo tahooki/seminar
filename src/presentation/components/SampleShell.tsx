@@ -18,6 +18,7 @@ const sampleLinks = [
   { href: "/samples/skill", label: "Skill" },
   { href: "/samples/guardrails", label: "Guardrails" },
   { href: "/samples/harness", label: "Harness" },
+  { href: "/samples/open-design-harness", label: "Open Design" },
 ];
 
 export function SampleShell({

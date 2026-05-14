@@ -19,6 +19,7 @@ export default function Home() {
           <div className="sample-links">
             <Link href="/samples/code-agent">Code Agent</Link>
             <Link href="/samples/ai-basic">AI Agent Basic</Link>
+            <Link href="/samples/open-design-harness">Open Design</Link>
             <Link href="/samples/guides">Guide Examples</Link>
           </div>
         </nav>
@@ -94,6 +95,28 @@ export default function Home() {
               <span className="tag">slides</span>
               <span className="tag">image deck</span>
               <span className="tag">speaker notes</span>
+            </div>
+          </Link>
+
+          <Link
+            className="sample-card span-12"
+            href="/samples/open-design-harness"
+          >
+            <div>
+              <span className="card-icon">
+                <Workflow size={28} />
+              </span>
+              <h2>Open Design Agent Harness</h2>
+              <p>
+                한 문장 prompt가 discovery, skill, design system, CLI
+                adapter, preview를 거쳐 실제 디자인 artifact가 되는 흐름을
+                18장 이미지 슬라이드로 정리한 발표 덱.
+              </p>
+            </div>
+            <div className="tag-row">
+              <span className="tag">open design</span>
+              <span className="tag">harness</span>
+              <span className="tag">image deck</span>
             </div>
           </Link>
 
