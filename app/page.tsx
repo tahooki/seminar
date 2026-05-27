@@ -142,6 +142,43 @@ export default function Home() {
             </div>
           </Link>
 
+          <Link className="sample-card span-12" href="/samples/a2ui-poc">
+            <div>
+              <span className="card-icon">
+                <Cable size={28} />
+              </span>
+              <h2>A2UI POC Briefing</h2>
+              <p>
+                a2ui-poc-rt-new-3의 Story 페이지를 바탕으로 Agent, MCP,
+                A2UI 런타임, Admin binding, 시연 runbook을 하나의 발표 흐름으로
+                묶은 POC 브리핑 덱.
+              </p>
+            </div>
+            <div className="tag-row">
+              <span className="tag">a2ui poc</span>
+              <span className="tag">agents</span>
+              <span className="tag">mcp</span>
+            </div>
+          </Link>
+
+          <Link className="sample-card span-12" href="/samples/a2ui-poc-slides">
+            <div>
+              <span className="card-icon">
+                <Sparkles size={28} />
+              </span>
+              <h2>Agent와 A2UI POC Slides</h2>
+              <p>
+                생성한 크레용 스타일 Agent/A2UI 개념 이미지와 실제 Chatbot A2UI
+                POC 캡처 3장을 모바일에서 넘겨 볼 수 있는 이미지 슬라이드 덱.
+              </p>
+            </div>
+            <div className="tag-row">
+              <span className="tag">a2ui poc</span>
+              <span className="tag">image deck</span>
+              <span className="tag">swipe</span>
+            </div>
+          </Link>
+
           <Link className="sample-card span-3" href="/samples/idea-cycle">
             <div>
               <span className="card-icon">

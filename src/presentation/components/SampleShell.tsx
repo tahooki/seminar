@@ -15,6 +15,8 @@ const sampleLinks = [
   { href: "/samples/ai-basic", label: "AI Agent Basic" },
   { href: "/samples/agents", label: "Agents" },
   { href: "/samples/mcp", label: "MCP" },
+  { href: "/samples/a2ui-poc", label: "A2UI POC" },
+  { href: "/samples/a2ui-poc-slides", label: "A2UI Slides" },
   { href: "/samples/skill", label: "Skill" },
   { href: "/samples/guardrails", label: "Guardrails" },
   { href: "/samples/harness", label: "Harness" },

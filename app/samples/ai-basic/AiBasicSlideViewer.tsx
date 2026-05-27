@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type TouchEvent,
+} from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -29,7 +35,9 @@ export function AiBasicSlideViewer({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showOverview, setShowOverview] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isFullscreenFallback, setIsFullscreenFallback] = useState(false);
   const viewerRef = useRef<HTMLDivElement>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const currentSlide = slides[currentIndex];
 
   const goToSlide = useCallback(
@@ -58,17 +66,34 @@ export function AiBasicSlideViewer({
       return;
     }
 
+    if (isFullscreenFallback) {
+      setIsFullscreenFallback(false);
+      return;
+    }
+
     if (!document.fullscreenElement) {
-      await element.requestFullscreen();
+      if (!document.fullscreenEnabled || !element.requestFullscreen) {
+        setIsFullscreenFallback(true);
+        return;
+      }
+
+      try {
+        await element.requestFullscreen();
+      } catch {
+        setIsFullscreenFallback(true);
+      }
       return;
     }
 
     await document.exitFullscreen();
-  }, []);
+  }, [isFullscreenFallback]);
 
   useEffect(() => {
     const handleFullscreenChange = () => {
       setIsFullscreen(document.fullscreenElement === viewerRef.current);
+      if (document.fullscreenElement === viewerRef.current) {
+        setIsFullscreenFallback(false);
+      }
     };
 
     document.addEventListener("fullscreenchange", handleFullscreenChange);
@@ -76,6 +101,19 @@ export function AiBasicSlideViewer({
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
     };
   }, []);
+
+  useEffect(() => {
+    if (!isFullscreenFallback) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isFullscreenFallback]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -119,6 +157,9 @@ export function AiBasicSlideViewer({
       }
 
       if (event.key === "Escape") {
+        if (isFullscreenFallback) {
+          setIsFullscreenFallback(false);
+        }
         setShowOverview(false);
       }
     };
@@ -127,11 +168,57 @@ export function AiBasicSlideViewer({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [goNext, goPrevious, goToSlide, slides.length, toggleFullscreen]);
+  }, [
+    goNext,
+    goPrevious,
+    goToSlide,
+    isFullscreenFallback,
+    slides.length,
+    toggleFullscreen,
+  ]);
+
+  const handleTouchStart = useCallback((event: TouchEvent<HTMLDivElement>) => {
+    const touch = event.changedTouches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  }, []);
+
+  const handleTouchEnd = useCallback(
+    (event: TouchEvent<HTMLDivElement>) => {
+      const start = touchStartRef.current;
+      const touch = event.changedTouches[0];
+      touchStartRef.current = null;
+
+      if (!start || showOverview) {
+        return;
+      }
+
+      const deltaX = touch.clientX - start.x;
+      const deltaY = touch.clientY - start.y;
+
+      if (Math.abs(deltaX) < 52 || Math.abs(deltaX) < Math.abs(deltaY) * 1.2) {
+        return;
+      }
+
+      if (deltaX < 0) {
+        goNext();
+        return;
+      }
+
+      goPrevious();
+    },
+    [goNext, goPrevious, showOverview],
+  );
 
   return (
     <section className="basic-slide-viewer" aria-label={ariaLabel}>
-      <div ref={viewerRef} className="basic-slide-stage">
+      <div
+        ref={viewerRef}
+        className={`basic-slide-stage${
+          isFullscreen || isFullscreenFallback ? " is-fullscreen" : ""
+        }${isFullscreenFallback ? " is-pseudo-fullscreen" : ""}`}
+        onTouchEnd={handleTouchEnd}
+        onTouchStart={handleTouchStart}
+      >
         <div className="basic-slide-toolbar" aria-label="슬라이드 조작">
           <button
             type="button"
@@ -166,10 +253,14 @@ export function AiBasicSlideViewer({
           <button
             type="button"
             onClick={() => void toggleFullscreen()}
-            aria-label={isFullscreen ? "전체 화면 종료" : "전체 화면"}
-            title={isFullscreen ? "전체 화면 종료" : "전체 화면"}
+            aria-label={
+              isFullscreen || isFullscreenFallback ? "전체 화면 종료" : "전체 화면"
+            }
+            title={
+              isFullscreen || isFullscreenFallback ? "전체 화면 종료" : "전체 화면"
+            }
           >
-            {isFullscreen ? (
+            {isFullscreen || isFullscreenFallback ? (
               <Minimize2 aria-hidden="true" size={19} />
             ) : (
               <Expand aria-hidden="true" size={19} />
