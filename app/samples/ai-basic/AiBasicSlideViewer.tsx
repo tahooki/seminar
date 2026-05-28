@@ -72,6 +72,8 @@ export function AiBasicSlideViewer({
     }
 
     if (!document.fullscreenElement) {
+      let didEnterNativeFullscreen = false;
+
       if (!document.fullscreenEnabled || !element.requestFullscreen) {
         setIsFullscreenFallback(true);
         return;
@@ -79,7 +81,13 @@ export function AiBasicSlideViewer({
 
       try {
         await element.requestFullscreen();
+        didEnterNativeFullscreen = document.fullscreenElement === element;
       } catch {
+        setIsFullscreenFallback(true);
+        return;
+      }
+
+      if (!didEnterNativeFullscreen) {
         setIsFullscreenFallback(true);
       }
       return;
@@ -215,11 +223,18 @@ export function AiBasicSlideViewer({
         ref={viewerRef}
         className={`basic-slide-stage${
           isFullscreen || isFullscreenFallback ? " is-fullscreen" : ""
-        }${isFullscreenFallback ? " is-pseudo-fullscreen" : ""}`}
+        }${isFullscreenFallback ? " is-pseudo-fullscreen" : ""}${
+          showOverview ? " has-overview" : ""
+        }`}
         onTouchEnd={handleTouchEnd}
         onTouchStart={handleTouchStart}
       >
-        <div className="basic-slide-toolbar" aria-label="슬라이드 조작">
+        <div
+          className="basic-slide-toolbar"
+          aria-label="슬라이드 조작"
+          onTouchEnd={(event) => event.stopPropagation()}
+          onTouchStart={(event) => event.stopPropagation()}
+        >
           <button
             type="button"
             onClick={goPrevious}
@@ -243,7 +258,10 @@ export function AiBasicSlideViewer({
           </button>
           <button
             type="button"
-            onClick={() => setShowOverview((value) => !value)}
+            onClick={(event) => {
+              event.stopPropagation();
+              setShowOverview((value) => !value);
+            }}
             aria-pressed={showOverview}
             aria-label="슬라이드 전체 보기"
             title="슬라이드 전체 보기"
@@ -252,7 +270,10 @@ export function AiBasicSlideViewer({
           </button>
           <button
             type="button"
-            onClick={() => void toggleFullscreen()}
+            onClick={(event) => {
+              event.stopPropagation();
+              void toggleFullscreen();
+            }}
             aria-label={
               isFullscreen || isFullscreenFallback ? "전체 화면 종료" : "전체 화면"
             }

@@ -19,6 +19,7 @@ export default function Home() {
           <div className="sample-links">
             <Link href="/samples/code-agent">Code Agent</Link>
             <Link href="/samples/ai-basic">AI Agent Basic</Link>
+            <Link href="/samples/a2ui-poc-slides">A2UI Slides</Link>
             <Link href="/samples/open-design-harness">Open Design</Link>
             <Link href="/samples/guides">Guide Examples</Link>
           </div>

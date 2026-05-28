@@ -1123,6 +1123,11 @@ svg {
   backdrop-filter: blur(18px);
 }
 
+.basic-slide-stage.has-overview .basic-slide-overview {
+  top: 72px;
+  max-height: none;
+}
+
 .basic-slide-overview button {
   position: relative;
   display: grid;
