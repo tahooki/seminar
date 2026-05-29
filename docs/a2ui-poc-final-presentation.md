@@ -7,30 +7,22 @@
 
 ## 기술 용어 검수 요약
 
-- `GPT-5.5`는 LLM으로 설명한다.
-- `ChatGPT`는 제품/애플리케이션이며, 도구 호출과 코드 실행 등이 붙으면 Agent처럼 동작한다고 설명한다.
 - Agent는 `LLM을 중심으로 도구, 지식, 작업 절차, 실행 환경, 안전장치를 조합해 사용자의 목표를 수행하는 실행 시스템`으로 설명한다.
 - MCP는 USB 비유를 사용하되, 정확히는 Agent와 외부 도구를 연결하는 표준 인터페이스라고 설명한다.
 - Skill은 단순 문서가 아니라 Agent의 작업 절차와 판단 기준을 담은 작업 매뉴얼로 설명한다.
 - RAG는 QnA 전용 기술이 아니라, 필요한 문서나 데이터를 검색해 근거 기반으로 답하게 만드는 방식으로 설명한다.
 - A2UI는 Agent가 HTML/CSS를 마음대로 생성하는 방식이 아니라, UI 의도와 데이터를 전달하고 Client가 검증된 컴포넌트로 렌더링하는 방식으로 설명한다.
 
-참고 출처:
-
-- Anthropic, Claude Opus 4.8: <https://www.anthropic.com/news/claude-opus-4-8>
-- OpenAI, GPT-5.5: <https://openai.com/index/introducing-gpt-5-5/>
-
 ---
 
 ## 최종 슬라이드 순서
 
+> 이미지 파일 번호 기준이며, 02, 05, 06 슬라이드는 최종 덱에서 제외한다.
+
 0. 인사와 발표 주제 - 신규 이미지 생성
 1. 발표 순서 - 신규 이미지 생성
-2. 최신 모델 이야기 - 신규 이미지 생성
 3. Agent란 무엇일까요? - 신규 이미지 생성
 4. Agent를 구성하는 것 - 신규 이미지 생성
-5. GPT-5.5와 ChatGPT는 둘 다 Agent일까요? - 신규 이미지 생성
-6. GPT-5.5는 LLM, ChatGPT는 Agent처럼 동작하는 제품 - 신규 이미지 생성
 7. LLM이란? - 신규 이미지 생성
 8. LLM은 어떻게 답변을 만들까? - 신규 이미지 생성
 9. Agent는 LLM을 업무로 확장한다 - 신규 이미지 생성
@@ -109,32 +101,6 @@
 
 ---
 
-## Slide 02 - 최신 모델 이야기
-
-### 이미지 제작
-
-- 상태: 신규 이미지 생성 필요
-- 기존 이미지: 없음
-- 이미지 프롬프트:
-
-> 16:9 crayon illustration. News bulletin feel with floating cards labeled 'Claude Opus', 'GPT-5.5', 'ChatGPT', 'Claude Code'. A curious audience looking at AI model names. Large readable Korean heading: '요즘 AI 이름들, 뭐가 다를까?'. Warm paper texture, simple robot mascot.
-
-### 발표 스크립트
-
-마침 이번 주에 Claude Opus 4.8도 공개되었다고 합니다.
-
-요즘은 Claude Opus, GPT-5.5, ChatGPT, Claude Code 같은 이름을 다들 한 번쯤 들어보셨을 것 같습니다.
-
-그런데 막상 들어보면 이런 생각이 듭니다.
-
-이것들은 다 AI인 것 같긴 한데, 정확히 뭐가 다른 걸까요?
-
-GPT-5.5 같은 모델과 ChatGPT 같은 제품은 같은 걸까요?
-
-이 차이를 이해하면 오늘 이야기할 Agent와 A2UI도 훨씬 쉽게 이해할 수 있습니다.
-
----
-
 ## Slide 03 - Agent란 무엇일까요?
 
 ### 이미지 제작
@@ -174,50 +140,6 @@ Agent는 **LLM을 중심으로 도구, 지식, 작업 절차, 실행 환경, 안
 여기에는 LLM, MCP, Skill, RAG, Memory, Runtime, Guardrails 같은 구성 요소가 붙을 수 있습니다.
 
 쉽게 말하면 LLM이 두뇌라면, Agent는 그 두뇌에 손과 발, 작업 매뉴얼, 참고 문서, 안전장치를 붙인 형태라고 볼 수 있습니다.
-
----
-
-## Slide 05 - GPT-5.5와 ChatGPT는 둘 다 Agent일까요?
-
-### 이미지 제작
-
-- 상태: 신규 이미지 생성 필요
-- 기존 이미지: 없음
-- 이미지 프롬프트:
-
-> 16:9 crayon comparison slide. Left card: 'GPT-5.5', right card: 'ChatGPT'. A large equals sign with question mark between them. Friendly robot holding a question card. Korean heading: '둘 다 같은 Agent일까요?'. Minimal clean layout.
-
-### 발표 스크립트
-
-그럼 질문을 하나 해보겠습니다.
-
-GPT-5.5와 ChatGPT는 둘 다 똑같이 Agent일까요?
-
-이 둘을 그냥 같은 AI라고 생각할 수도 있지만, 엄밀하게 보면 역할이 다릅니다.
-
----
-
-## Slide 06 - GPT-5.5는 LLM, ChatGPT는 Agent처럼 동작하는 제품
-
-### 이미지 제작
-
-- 상태: 신규 이미지 생성 필요
-- 기존 이미지: 없음
-- 이미지 프롬프트:
-
-> 16:9 crayon split comparison. Left: brain chip labeled 'LLM'. Right: chatbot app window with tools/files/code icons labeled 'Agent처럼 동작하는 제품'. Korean heading: '모델과 제품은 역할이 다릅니다'. Use clear readable text.
-
-### 발표 스크립트
-
-GPT-5.5는 LLM입니다.
-
-반면 ChatGPT는 LLM을 사용자가 쓸 수 있게 만든 제품입니다.
-
-그리고 ChatGPT가 파일을 읽고, 코드를 실행하고, 웹을 검색하고, 도구를 호출해서 작업을 이어갈 때는 Agent처럼 동작한다고 볼 수 있습니다.
-
-그래서 발표에서는 이렇게 구분하겠습니다.
-
-**GPT-5.5는 LLM이고, ChatGPT는 LLM에 여러 기능을 붙여 Agent처럼 동작하는 제품입니다.**
 
 ---
 

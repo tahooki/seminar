@@ -14,11 +14,8 @@ export const metadata: Metadata = {
 const slideEntries = [
   ["00", "/images/a2ui-poc/final/slide-00-title.png", "Agent와 A2UI POC 타이틀 슬라이드"],
   ["01", "/images/a2ui-poc/final/slide-01-agenda.png", "오늘의 발표 순서 슬라이드"],
-  ["02", "/images/a2ui-poc/final/slide-02-ai-names.png", "최신 AI 모델과 제품 이름을 소개하는 슬라이드"],
   ["03", "/images/a2ui-poc/final/slide-03-agent-question.png", "Agent란 무엇인지 질문하는 슬라이드"],
   ["04", "/images/a2ui-poc/final/slide-04-agent-system.png", "Agent는 실행 시스템이라는 구성도 슬라이드"],
-  ["05", "/images/a2ui-poc/final/slide-05-gpt-chatgpt-question.png", "GPT-5.5와 ChatGPT가 같은 Agent인지 묻는 슬라이드"],
-  ["06", "/images/a2ui-poc/final/slide-06-model-product.png", "LLM 모델과 Agent처럼 동작하는 제품을 비교하는 슬라이드"],
   ["07", "/images/a2ui-poc/final/slide-07-llm.png", "LLM은 문맥을 바탕으로 글을 생성한다는 슬라이드"],
   ["08", "/images/a2ui-poc/final/slide-08-llm-generates.png", "LLM이 입력 문맥으로 답변을 생성하는 과정 슬라이드"],
   ["09", "/images/a2ui-poc/final/slide-09-agent-expands-llm.png", "Agent가 LLM을 업무로 확장한다는 슬라이드"],
@@ -65,7 +62,7 @@ export default function A2UIPocSlidesPage() {
     <SampleShell
       eyebrow="Presentation / A2UI POC Slides"
       title="Agent와 A2UI POC 이미지 슬라이드"
-      description="Agent의 개념에서 MCP, Skill, RAG, A2UI POC 화면까지 이어지는 39장 스와이프 덱입니다."
+      description="Agent의 개념에서 MCP, Skill, RAG, A2UI POC 화면까지 이어지는 36장 스와이프 덱입니다."
       note="모바일에서는 좌우 스와이프로 넘기고, 격자 아이콘으로 전체 슬라이드 보기를 열 수 있습니다."
     >
       <AiBasicSlideViewer
