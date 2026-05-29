@@ -16,6 +16,16 @@ import {
   Minimize2,
 } from "lucide-react";
 
+type FullscreenDocument = Document & {
+  webkitExitFullscreen?: () => Promise<void> | void;
+  webkitFullscreenElement?: Element | null;
+  webkitFullscreenEnabled?: boolean;
+};
+
+type FullscreenTarget = HTMLDivElement & {
+  webkitRequestFullscreen?: () => Promise<void> | void;
+};
+
 export type AiBasicSlide = {
   id: string;
   number: string;
@@ -27,6 +37,52 @@ type AiBasicSlideViewerProps = {
   slides: AiBasicSlide[];
   ariaLabel?: string;
 };
+
+function getFullscreenElement() {
+  const fullscreenDocument = document as FullscreenDocument;
+
+  return (
+    document.fullscreenElement ??
+    fullscreenDocument.webkitFullscreenElement ??
+    null
+  );
+}
+
+function canRequestFullscreen(element: FullscreenTarget) {
+  const fullscreenDocument = document as FullscreenDocument;
+
+  return Boolean(
+    document.fullscreenEnabled ||
+      fullscreenDocument.webkitFullscreenEnabled ||
+      element.requestFullscreen ||
+      element.webkitRequestFullscreen,
+  );
+}
+
+async function requestNativeFullscreen(element: FullscreenTarget) {
+  if (element.requestFullscreen) {
+    await element.requestFullscreen();
+    return true;
+  }
+
+  if (element.webkitRequestFullscreen) {
+    await element.webkitRequestFullscreen();
+    return true;
+  }
+
+  return false;
+}
+
+async function exitNativeFullscreen() {
+  const fullscreenDocument = document as FullscreenDocument;
+
+  if (document.exitFullscreen) {
+    await document.exitFullscreen();
+    return;
+  }
+
+  await fullscreenDocument.webkitExitFullscreen?.();
+}
 
 export function AiBasicSlideViewer({
   slides,
@@ -60,53 +116,71 @@ export function AiBasicSlideViewer({
   }, [slides.length]);
 
   const toggleFullscreen = useCallback(async () => {
-    const element = viewerRef.current;
+    const element = viewerRef.current as FullscreenTarget | null;
 
     if (!element) {
       return;
     }
 
-    if (isFullscreenFallback) {
+    const fullscreenElement = getFullscreenElement();
+    const isViewerNativeFullscreen = fullscreenElement === element;
+
+    if (isFullscreenFallback || isViewerNativeFullscreen) {
       setIsFullscreenFallback(false);
+      setIsFullscreen(false);
+
+      if (isViewerNativeFullscreen) {
+        try {
+          await exitNativeFullscreen();
+        } catch {
+          setIsFullscreen(false);
+        }
+      }
+
       return;
     }
 
-    if (!document.fullscreenElement) {
-      let didEnterNativeFullscreen = false;
+    setShowOverview(false);
+    setIsFullscreenFallback(true);
 
-      if (!document.fullscreenEnabled || !element.requestFullscreen) {
-        setIsFullscreenFallback(true);
-        return;
-      }
-
-      try {
-        await element.requestFullscreen();
-        didEnterNativeFullscreen = document.fullscreenElement === element;
-      } catch {
-        setIsFullscreenFallback(true);
-        return;
-      }
-
-      if (!didEnterNativeFullscreen) {
-        setIsFullscreenFallback(true);
-      }
+    if (!canRequestFullscreen(element)) {
       return;
     }
 
-    await document.exitFullscreen();
+    try {
+      const didRequestNativeFullscreen = await requestNativeFullscreen(element);
+      const didEnterNativeFullscreen =
+        didRequestNativeFullscreen && getFullscreenElement() === element;
+
+      setIsFullscreen(didEnterNativeFullscreen);
+
+      if (didEnterNativeFullscreen) {
+        setIsFullscreenFallback(false);
+      }
+    } catch {
+      setIsFullscreenFallback(true);
+    }
   }, [isFullscreenFallback]);
 
   useEffect(() => {
     const handleFullscreenChange = () => {
-      setIsFullscreen(document.fullscreenElement === viewerRef.current);
-      if (document.fullscreenElement === viewerRef.current) {
+      const isViewerFullscreen = getFullscreenElement() === viewerRef.current;
+
+      setIsFullscreen(isViewerFullscreen);
+
+      if (isViewerFullscreen) {
         setIsFullscreenFallback(false);
       }
     };
 
     document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
     return () => {
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange,
+      );
     };
   }, []);
 
@@ -115,11 +189,15 @@ export function AiBasicSlideViewer({
       return;
     }
 
-    const previousOverflow = document.body.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousDocumentOverflow = document.documentElement.style.overflow;
+
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
 
     return () => {
-      document.body.style.overflow = previousOverflow;
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousDocumentOverflow;
     };
   }, [isFullscreenFallback]);
 
@@ -274,6 +352,7 @@ export function AiBasicSlideViewer({
               event.stopPropagation();
               void toggleFullscreen();
             }}
+            aria-pressed={isFullscreen || isFullscreenFallback}
             aria-label={
               isFullscreen || isFullscreenFallback ? "전체 화면 종료" : "전체 화면"
             }
