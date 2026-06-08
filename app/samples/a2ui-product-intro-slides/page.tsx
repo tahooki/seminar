@@ -20,7 +20,7 @@ const slideEntries = [
   [
     "02",
     "/images/a2ui-poc/product-intro/slides/slide-02-product-value.png",
-    "질문 하나가 조작 가능한 화면으로 이어지는 제품 가치 슬라이드",
+    "질문 하나가 등록된 조회 결과 화면으로 이어지는 제품 가치 슬라이드",
   ],
   [
     "03",

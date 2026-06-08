@@ -186,7 +186,7 @@
       text-transform: uppercase;
     }
 
-    .hero-actions {
+    .hero-ctas {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
@@ -663,8 +663,8 @@
         <div class="hero-copy">
           <p class="eyebrow">Chatbot A2UI · Product Overview</p>
           <h1>질문을 업무 화면으로 바꾸는 채팅 UI</h1>
-          <p class="lead">Chatbot A2UI는 사용자의 자연어 요청을 데이터 조회, 화면 선택, 액션 처리까지 연결해 채팅 안에서 바로 사용할 수 있는 업무 UI로 응답합니다.</p>
-          <div class="hero-actions">
+          <p class="lead">Chatbot A2UI는 사용자의 자연어 요청을 등록된 API 호출과 화면 템플릿 선택으로 연결해, 채팅 안에 조회 결과 화면을 표시합니다.</p>
+          <div class="hero-ctas">
             <a class="btn btn-primary" href="#screens">실제 화면 보기</a>
             <a class="btn" href="#flow">작동 방식 보기</a>
           </div>
@@ -687,7 +687,7 @@
         <div>
           <div class="section-head">
             <p class="eyebrow">무엇이 달라지나요?</p>
-            <h2>질문 하나가 데이터 조회와 조작 가능한 화면으로 이어집니다.</h2>
+            <h2>질문 하나가 등록된 조회 결과 화면으로 이어집니다.</h2>
             <p class="lead">A2UI는 질문을 이해하는 Agent, 화면 규칙을 관리하는 Admin, 실제 화면을 그리는 Renderer를 하나의 제품 경험으로 묶습니다.</p>
           </div>
 
@@ -702,15 +702,15 @@
             <div class="feature-line">
               <span class="feature-index">02</span>
               <div>
-                <h3>Agent가 데이터 모양을 보고 알맞은 화면을 고릅니다.</h3>
-                <p>여러 행은 표로, 몇 개 항목은 카드 목록으로, 한 건 상세는 프로필 화면으로 구성합니다.</p>
+                <h3>Agent가 등록된 화면 규칙 중 하나를 고릅니다.</h3>
+                <p>조회 결과가 여러 행이면 표로, 몇 개 항목이면 카드 목록으로, 한 건 상세면 프로필 화면으로 표시합니다.</p>
               </div>
             </div>
             <div class="feature-line">
               <span class="feature-index">03</span>
               <div>
-                <h3>채팅 안에서 바로 조작합니다.</h3>
-                <p>다음 페이지, 새로고침 같은 액션도 같은 화면 안에서 바로 처리합니다.</p>
+                <h3>채팅 안에 결과 화면을 바로 표시합니다.</h3>
+                <p>호출 결과 데이터는 응답 영역 안에서 읽기 쉬운 업무 화면으로 렌더링됩니다.</p>
               </div>
             </div>
           </div>
@@ -725,11 +725,11 @@
             <figcaption>자연어 요청이 채팅 응답 영역 안에서 구조화된 업무 화면으로 바뀌는 장면입니다.</figcaption>
           </figure>
           <figure class="generated-visual">
-            <span class="visual-tag">동적 UI</span>
-            <button class="visual-button" type="button" aria-label="동적 UI 원본 이미지 보기">
-              <img src="../public/images/a2ui-poc/product-intro/dynamic-ui.png" alt="하나의 채팅 요청에서 표, 카드 목록, 상세 화면으로 분기되는 구조" />
+            <span class="visual-tag">응답 UI</span>
+            <button class="visual-button" type="button" aria-label="응답 UI 원본 이미지 보기">
+              <img src="../public/images/a2ui-poc/product-intro/dynamic-ui.png" alt="하나의 채팅 요청에서 등록된 화면 규칙에 따라 표, 카드 목록, 상세 화면 중 하나를 표시하는 구조" />
             </button>
-            <figcaption>같은 채팅 입력에서 데이터 모양에 따라 표, 카드 목록, 상세 화면으로 갈라지는 구조입니다.</figcaption>
+            <figcaption>같은 채팅 입력에서 등록된 규칙에 따라 표, 카드 목록, 상세 화면 중 하나를 표시하는 구조입니다.</figcaption>
           </figure>
         </div>
       </div>
@@ -740,7 +740,7 @@
         <div class="section-head">
           <p class="eyebrow">어떤 화면으로 보여주나요?</p>
           <h2>같은 배포 데이터도 목적에 따라 다른 화면으로 보여줍니다.</h2>
-          <p class="lead">목록 비교는 표, 빠른 훑어보기는 카드 목록, 한 건 분석은 프로필 화면으로 나뉩니다. 아래 화면은 Agent의 선택 결과를 보여주는 예시입니다.</p>
+          <p class="lead">목록 비교는 표, 빠른 훑어보기는 카드 목록, 한 건 분석은 프로필 화면으로 나뉩니다. 아래 화면은 등록된 템플릿으로 조회 결과를 표시하는 예시입니다.</p>
         </div>
 
         <div class="screen-grid">
@@ -750,7 +750,7 @@
             </button>
             <div>
               <h3>표 화면</h3>
-              <p>여러 행을 비교해야 하는 요청은 페이지 이동이 가능한 표로 표시됩니다.</p>
+              <p>여러 행을 비교해야 하는 요청은 표 화면으로 표시됩니다.</p>
             </div>
           </article>
           <article class="screen-card">
@@ -779,13 +779,13 @@
       <div class="container">
         <div class="section-head">
           <p class="eyebrow">어떻게 작동할까요?</p>
-          <h2>Agent가 Admin 템플릿을 MCP로 호출하고, Renderer가 화면에 표시합니다.</h2>
-          <p class="lead">사용자 메시지가 들어오면 Chatbot Agent는 요청 의도를 판단하고, Admin MCP Tool을 통해 조회와 화면 구성을 진행합니다. 마지막에는 채팅 화면 렌더러가 검증된 컴포넌트로 결과를 표시합니다.</p>
+          <h2>Admin에 등록된 API와 템플릿을 호출하고, Renderer가 결과를 표시합니다.</h2>
+          <p class="lead">사용자 메시지가 들어오면 Chatbot Agent는 Admin MCP Tool에서 등록된 API와 화면 템플릿을 선택해 단방향 조회를 실행합니다. 마지막에는 채팅 화면 렌더러가 조회 결과를 검증된 컴포넌트로 표시합니다.</p>
         </div>
 
         <figure class="generated-visual runtime-visual">
           <button class="visual-button" type="button" aria-label="A2UI 작동 순서 이미지 원본 보기">
-            <img src="../public/images/a2ui-poc/product-intro/runtime-flow-v2.png" alt="A2UI가 사용자 질문에서 Agent 판단, Admin MCP 호출, API와 템플릿 선택, 파라미터 추출, API 실행과 Data Profile, Render Plan과 SurfaceEnvelope를 거쳐 Renderer 표시로 이어지는 8단계 작동 순서" />
+            <img src="../public/images/a2ui-poc/product-intro/runtime-flow-v2.png" alt="A2UI가 사용자 질문에서 요청 분류, Admin MCP 호출, 등록된 API 선택, 조회 조건 생성, API 실행, 등록된 화면 규칙 매칭을 거쳐 Renderer 표시로 이어지는 8단계 작동 순서" />
           </button>
         </figure>
       </div>
@@ -796,7 +796,7 @@
         <div class="section-head">
           <p class="eyebrow">어떻게 연동하나요?</p>
           <h2>코드는 네 지점으로 연결됩니다.</h2>
-          <p class="lead">제품 설명 이후에는 Admin MCP Tool 등록, Agent SDK 호출, Chatbot Agent의 화면 설계도 처리, 채팅 화면 렌더러 연결만 확인하면 됩니다.</p>
+          <p class="lead">제품 설명 이후에는 Admin MCP Tool 등록, Agent SDK 호출, Chatbot Agent의 조회 결과 처리, 채팅 화면 렌더러 연결만 확인하면 됩니다.</p>
         </div>
 
         <div class="code-tabs" role="tablist" aria-label="code surfaces">
@@ -811,7 +811,7 @@
 <pre class="code"><code><span class="muted">// Admin MCP Tool</span>
 server.tool(
   "a2ui.runDataQuery",
-  "자연어 데이터 조회 요청을 화면 설계도로 변환합니다.",
+  "자연어 데이터 조회 요청을 등록된 화면 응답으로 변환합니다.",
   async ({ input, history }) =&gt; {
     const result = await runDataA2UIQuery({
       input,
@@ -860,10 +860,7 @@ if (result.type === "surface") {
 function ChatMessage({ message }) {
   if (message.surface) {
     return (
-      &lt;SurfaceRenderer
-        surface={message.surface}
-        onAction={handleSurfaceAction}
-      /&gt;
+      &lt;SurfaceRenderer surface={message.surface} /&gt;
     );
   }
 
@@ -889,7 +886,7 @@ function ChatMessage({ message }) {
             <ul>
               <li>재사용 가능한 Component UI</li>
               <li>API와 데이터 연결 규칙</li>
-              <li>화면 설계도 계약과 액션 정의</li>
+              <li>조회 응답 계약과 화면 데이터 정의</li>
               <li>채팅 화면 렌더러</li>
             </ul>
           </div>
@@ -899,9 +896,7 @@ function ChatMessage({ message }) {
             <ul>
               <li>자연어 질문 입력</li>
               <li>MCP나 라이브러리로 쉽게 연동된 업무 화면 사용</li>
-              <li>응답 영역에 표시된 업무 화면 확인</li>
-              <li>다음 페이지, 새로고침 같은 화면 안 액션 사용</li>
-              <li>UI 종류나 API 이름은 몰라도 되는 사용 경험</li>
+              <li>응답 영역에 표시된 조회 결과 확인</li>
             </ul>
           </div>
         </div>

@@ -58,7 +58,7 @@ Use the visual tone of a polished technical seminar slide: calm, structured, tru
 
 - Chatbot A2UI
 - 질문을 업무 화면으로 바꾸는 채팅 UI
-- 자연어 요청 → 데이터 조회 → 화면 선택 → 화면 안 액션
+- 자연어 요청 → 등록된 API 호출 → 조회 결과 표시
 
 ### 구도
 
@@ -75,7 +75,7 @@ Clear readable Korean labels, large headline, minimal text.
 Title: "질문을 업무 화면으로 바꾸는 채팅 UI"
 Small product label: "Chatbot A2UI"
 Visual: left side a chat input bubble with Korean request, center a compact Agent decision node, right side a chatbot response area containing a structured table UI.
-Add three small steps under the main visual: "자연어 요청", "데이터 조회", "화면 안 액션".
+Add three small steps under the main visual: "자연어 요청", "등록된 API 호출", "조회 결과 표시".
 Calm enterprise product tone, no cartoon characters, no fake brand logos.
 ```
 
@@ -87,14 +87,14 @@ Calm enterprise product tone, no cartoon characters, no fake brand logos.
 
 ### 목적
 
-사용자가 UI를 고르는 것이 아니라, 질문 하나가 조회 조건과 화면 선택, 화면 안 조작으로 이어진다는 점을 명확히 한다.
+사용자 질문이 조회 조건으로 정리되고, 등록된 API와 화면 규칙을 거쳐 조회 결과 화면으로 표시된다는 점을 명확히 한다.
 
 ### 화면 문구
 
-- 질문 하나가 조작 가능한 화면으로 이어집니다
+- 질문 하나가 등록된 조회 결과 화면으로 이어집니다
 - 01 조회 조건 이해
 - 02 화면 선택
-- 03 화면 안 액션
+- 03 결과 화면 표시
 
 ### 구도
 
@@ -107,11 +107,11 @@ Clean Korean product presentation slide, wide 16:9 composition.
 Bright paper-white background, deep navy typography, teal accent badges, soft blue secondary accents.
 Modern SaaS UI infographic style, rounded rectangles with 8px radius, thin gray-blue borders, subtle shadows.
 
-Title: "질문 하나가 조작 가능한 화면으로 이어집니다"
+Title: "질문 하나가 등록된 조회 결과 화면으로 이어집니다"
 Create three connected cards with teal number badges.
 Card 1 label: "조회 조건 이해" with small icons for calendar, environment, status filter.
 Card 2 label: "화면 선택" with small table, card list, profile UI thumbnails.
-Card 3 label: "화면 안 액션" with pagination, refresh, action button symbols.
+Card 3 label: "결과 화면 표시" with table, card list, and profile result screen symbols.
 Use short Korean labels only. Make the flow feel like a product capability, not a generic process.
 ```
 
@@ -231,7 +231,7 @@ Title: "한 건 분석은 프로필 화면"
 Main visual: a large framed chatbot response screenshot area showing one detailed profile card inside chat.
 Add a user request bubble: "상세 한 개만 보여줘"
 Add a small teal label: "card.profile"
-The profile card should show grouped detail fields, incident context, failure reason, owner, and action buttons.
+The profile card should show grouped detail fields, incident context, failure reason, owner, and status details.
 Keep the product UI realistic and calm.
 ```
 
@@ -243,7 +243,7 @@ Keep the product UI realistic and calm.
 
 ### 목적
 
-현재 생성한 `runtime-flow-v2.png`의 메시지를 유지하되, 제품 소개 흐름에 맞게 "Admin 템플릿을 MCP로 호출한다"는 표현을 강화한다.
+등록된 API와 화면 템플릿을 순서대로 선택해 채팅 안의 업무 화면으로 표시하는 흐름을 보여준다. UI를 동적으로 생성한다기보다, 관리된 계약과 템플릿 중 맞는 것을 고르는 구조를 강조한다.
 
 ### 화면 문구
 
@@ -251,11 +251,11 @@ Keep the product UI realistic and calm.
 - 사용자 질문
 - Agent 판단
 - Admin MCP 호출
-- API·템플릿 선택
-- 파라미터 추출
-- API 실행·Data Profile
-- Render Plan·SurfaceEnvelope
-- Renderer 표시
+- API 선택
+- API 조회 조건 생성
+- API 실행
+- 템플릿 선택
+- Renderer 화면 표시
 
 ### 사용 자산
 
@@ -264,7 +264,7 @@ Keep the product UI realistic and calm.
 
 ### 구도
 
-현재 이미지처럼 4개씩 2줄 카드 배열을 유지한다. 단, 3번과 4번이 Admin MCP와 템플릿 카탈로그를 더 분명히 보여주도록 한다.
+4개씩 2줄 카드 배열을 유지한다. 8번 Renderer 화면은 정적 결과 화면만 보여준다.
 
 ### 이미지 생성 프롬프트
 
@@ -279,12 +279,12 @@ Cards:
 1 "사용자 질문" - chat input
 2 "Agent 판단" - decision node
 3 "Admin MCP 호출" - Agent connected to MCP tool
-4 "API·템플릿 선택" - API and template catalog
-5 "파라미터 추출" - filters extracted from sentence
-6 "API 실행·Data Profile" - database and profile chart
-7 "Render Plan·SurfaceEnvelope" - plan document and envelope
-8 "Renderer 표시" - chatbot response renders table/cards
-Footer sentence: "등록된 규칙과 템플릿을 거쳐 채팅 안의 업무 화면으로 표시됩니다."
+4 "API 선택" - API catalog
+5 "API 조회 조건 생성" - filters for API execution
+6 "API 실행" - database/API result
+7 "템플릿 선택" - template catalog with table, card list, profile
+8 "Renderer 화면 표시" - static chat result screen
+Footer sentence: "등록된 API와 화면 템플릿을 선택해 채팅 안의 업무 화면으로 표시합니다."
 ```
 
 ## Slide 07 - 코드 연동 지점
@@ -340,11 +340,11 @@ Make it feel implementation-ready but not text-heavy.
 
 - 우리가 관리하고, 사용자는 사용만 합니다
 - Library Team: Component UI, API 규칙, 화면 계약, Renderer
-- End User: 자연어 질문, 결과 화면, 화면 안 액션
+- End User: 자연어 질문, 조회 결과 확인
 
 ### 구도
 
-왼쪽은 Library Team의 관리 콘솔, 오른쪽은 End User의 채팅 화면. 가운데에는 관리된 규칙이 결과 화면으로 이어지는 얇은 연결선. End User 쪽에는 UI 타입이나 API 이름이 보이지 않게 한다.
+왼쪽은 Library Team의 관리 콘솔, 오른쪽은 End User의 채팅 화면. 가운데에는 관리된 규칙이 결과 화면으로 이어지는 얇은 연결선. End User 쪽은 질문 입력과 조회 결과 확인만 단순하게 보여준다.
 
 ### 이미지 생성 프롬프트
 
@@ -358,9 +358,9 @@ Two-lane diagram.
 Left lane title: "Library Team"
 Left items: "Component UI", "API 규칙", "화면 계약", "Renderer"
 Right lane title: "End User"
-Right items: "자연어 질문", "결과 화면", "화면 안 액션"
+Right items: "자연어 질문 입력", "조회 결과 확인"
 Center connector: managed templates and rules flow into a chatbot result screen.
-Make the right lane simpler than the left lane to emphasize the user does not choose UI types or API names.
+Make the right lane simpler than the left lane to emphasize the user only uses the chat result screen.
 ```
 
 ## Slide 09 - 확장 로드맵
