@@ -17,6 +17,7 @@ const sampleLinks = [
   { href: "/samples/mcp", label: "MCP" },
   { href: "/samples/a2ui-poc", label: "A2UI POC" },
   { href: "/samples/a2ui-poc-slides", label: "A2UI Slides" },
+  { href: "/samples/a2ui-product-intro-slides", label: "A2UI Product" },
   { href: "/samples/skill", label: "Skill" },
   { href: "/samples/guardrails", label: "Guardrails" },
   { href: "/samples/harness", label: "Harness" },

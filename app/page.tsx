@@ -20,6 +20,9 @@ export default function Home() {
             <Link href="/samples/code-agent">Code Agent</Link>
             <Link href="/samples/ai-basic">AI Agent Basic</Link>
             <Link href="/samples/a2ui-poc-slides">A2UI Slides</Link>
+            <Link href="/samples/a2ui-product-intro-slides">
+              A2UI Product
+            </Link>
             <Link href="/samples/open-design-harness">Open Design</Link>
             <Link href="/samples/guides">Guide Examples</Link>
           </div>
@@ -177,6 +180,28 @@ export default function Home() {
               <span className="tag">a2ui poc</span>
               <span className="tag">image deck</span>
               <span className="tag">swipe</span>
+            </div>
+          </Link>
+
+          <Link
+            className="sample-card span-12"
+            href="/samples/a2ui-product-intro-slides"
+          >
+            <div>
+              <span className="card-icon">
+                <Sparkles size={28} />
+              </span>
+              <h2>Chatbot A2UI Product Intro Slides</h2>
+              <p>
+                Chatbot A2UI가 질문을 업무 화면으로 바꾸는 가치, 실제 화면,
+                작동 순서, 코드 연동, 역할 분리와 확장 로드맵을 9장 이미지
+                슬라이드로 정리한 제품 소개 덱.
+              </p>
+            </div>
+            <div className="tag-row">
+              <span className="tag">a2ui product</span>
+              <span className="tag">image deck</span>
+              <span className="tag">pdf</span>
             </div>
           </Link>
 
