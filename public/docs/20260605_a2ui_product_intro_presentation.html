@@ -1,0 +1,1027 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chatbot A2UI - Product Overview</title>
+  <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <style>
+    :root {
+      --bg: #f3f6f9;
+      --surface: #ffffff;
+      --panel: #f8fafc;
+      --fg: #111827;
+      --muted: #4b5565;
+      --line: #d8dee8;
+      --primary: #173b57;
+      --primary-soft: #e7eef5;
+      --teal: #1f7a6d;
+      --teal-soft: #e4f3f0;
+      --code: #15202b;
+      --shadow: 0 18px 42px rgba(20, 35, 52, 0.12);
+      --font: -apple-system, BlinkMacSystemFont, "Pretendard Variable", Pretendard, "Segoe UI", system-ui, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      --container: 1180px;
+      --gutter: 32px;
+      --radius: 8px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #f3f6f9 0%, #ffffff 42%, #f7f9fb 100%);
+      color: var(--fg);
+      font-family: var(--font);
+      font-size: 17px;
+      line-height: 1.62;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    p, h1, h2, h3 {
+      margin: 0;
+    }
+
+    p, h1, h2, h3 {
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    .topnav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .topnav-inner {
+      max-width: var(--container);
+      margin-inline: auto;
+      padding: 14px var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .topnav nav {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .topnav a:hover {
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    .section {
+      padding-block: clamp(64px, 8vw, 108px);
+      border-top: 1px solid var(--line);
+    }
+
+    .section:first-of-type {
+      border-top: 0;
+    }
+
+    .eyebrow {
+      color: var(--teal);
+      font-size: clamp(20px, 2vw, 28px);
+      font-weight: 850;
+      letter-spacing: 0;
+      margin-bottom: 18px;
+      line-height: 1.35;
+    }
+
+    h1 {
+      max-width: 920px;
+      font-size: clamp(44px, 6.8vw, 88px);
+      line-height: 1.04;
+      letter-spacing: 0;
+      font-weight: 850;
+    }
+
+    h2 {
+      max-width: 880px;
+      font-size: clamp(32px, 4vw, 56px);
+      line-height: 1.14;
+      letter-spacing: 0;
+      font-weight: 820;
+    }
+
+    h3 {
+      font-size: 21px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 780px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.62;
+    }
+
+    .hero {
+      min-height: calc(100vh - 64px);
+      display: grid;
+      align-items: center;
+      padding-block: clamp(72px, 10vw, 132px);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
+      gap: clamp(36px, 5vw, 64px);
+      align-items: center;
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 24px;
+    }
+
+    .role-panel > .eyebrow {
+      font-family: var(--mono);
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 760;
+      transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--primary);
+      background: #f9fbfd;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: var(--surface);
+    }
+
+    .product-frame {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .frame-bar {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-inline: 16px;
+      border-bottom: 1px solid var(--line);
+      background: #f2f5f8;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .frame-dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .frame-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #aab4c0;
+    }
+
+    .hero-shot {
+      padding: 16px;
+      background: #0f1722;
+    }
+
+    .hero-shot img {
+      width: 100%;
+      max-height: 680px;
+      object-fit: contain;
+      object-position: top center;
+      border-radius: var(--radius);
+      background: #0f1722;
+    }
+
+    .section-head {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 42px;
+    }
+
+    .product-strip {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+      gap: clamp(28px, 4vw, 48px);
+      align-items: stretch;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .feature-line {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 16px;
+      padding: 20px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .feature-line:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .feature-index {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      background: var(--primary);
+      color: var(--surface);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .feature-line p {
+      color: var(--muted);
+      margin-top: 4px;
+      font-size: 15px;
+    }
+
+    .prompt-board {
+      display: grid;
+      gap: 18px;
+    }
+
+    .generated-visual {
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+      border: 1px solid #c9d4e0;
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 14px 32px rgba(17, 24, 39, 0.08);
+    }
+
+    .generated-visual img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #eef3f8;
+    }
+
+    .visual-button {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+    }
+
+    .visual-button:focus-visible {
+      outline: 3px solid var(--teal);
+      outline-offset: -3px;
+    }
+
+    .visual-tag {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      padding: 5px 9px;
+      border: 1px solid rgba(201, 212, 224, 0.9);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--primary);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+
+    .generated-visual figcaption {
+      padding: 14px 16px 16px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+      background: #ffffff;
+    }
+
+    .screen-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .screen-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 12px 30px rgba(17, 24, 39, 0.06);
+    }
+
+    .screen-button {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+    }
+
+    .screen-button:focus-visible {
+      outline: 3px solid var(--teal);
+      outline-offset: -3px;
+    }
+
+    .screen-card img {
+      width: 100%;
+      aspect-ratio: 640 / 846;
+      object-fit: cover;
+      object-position: top center;
+      background: #0f1722;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .screen-card div {
+      padding: 18px;
+    }
+
+    .screen-card p {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .diagram-board {
+      padding: clamp(24px, 4vw, 40px);
+      border: 1px solid #c9d4e0;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(31, 122, 109, 0.08), transparent 38%),
+        linear-gradient(180deg, #ffffff, #f5f8fb);
+      box-shadow: 0 18px 42px rgba(20, 35, 52, 0.1);
+    }
+
+    .runtime-visual,
+    .expansion-visual {
+      box-shadow: 0 18px 42px rgba(20, 35, 52, 0.1);
+    }
+
+    .runtime-visual img,
+    .expansion-visual img {
+      height: auto;
+      aspect-ratio: auto;
+      object-fit: contain;
+      background: #ffffff;
+    }
+
+    .board-note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--teal);
+      border-radius: var(--radius);
+      background: rgba(228, 243, 240, 0.72);
+      color: #20343a;
+      font-size: 15px;
+    }
+
+    .role-split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 28px;
+    }
+
+    .role-panel {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .role-panel.user {
+      border-color: color-mix(in oklch, var(--teal) 35%, var(--line));
+      background: linear-gradient(180deg, #ffffff, #f4fbf9);
+    }
+
+    .role-panel ul {
+      margin: 20px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .role-panel li + li {
+      margin-top: 8px;
+    }
+
+    .code-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .code-tab {
+      appearance: none;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--fg);
+      padding: 10px 16px;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .code-tab[aria-selected="true"] {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: var(--surface);
+    }
+
+    .code-panel {
+      display: none;
+    }
+
+    .code-panel[data-active="true"] {
+      display: block;
+    }
+
+    .code {
+      margin: 0;
+      padding: 26px;
+      overflow: auto;
+      border-radius: var(--radius);
+      background: var(--code);
+      color: var(--surface);
+      font-family: var(--mono);
+      font-size: 15px;
+      line-height: 1.7;
+      word-break: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .code .muted {
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+      background: rgba(15, 23, 34, 0.88);
+    }
+
+    .lightbox[data-open="true"] {
+      display: flex;
+    }
+
+    .lightbox img {
+      width: auto;
+      height: auto;
+      max-width: calc(100vw - 96px);
+      max-height: calc(100vh - 120px);
+      object-fit: contain;
+      border-radius: var(--radius);
+      background: #0f1722;
+      box-shadow: 0 26px 80px rgba(0, 0, 0, 0.48);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      border-radius: 999px;
+      background: rgba(15, 23, 34, 0.78);
+      color: var(--surface);
+      font-size: 26px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .footer {
+      padding-block: 36px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1040px) {
+      .hero-grid,
+      .product-strip,
+      .role-split {
+        grid-template-columns: 1fr;
+      }
+
+      .screen-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      :root {
+        --gutter: 20px;
+      }
+
+      .topnav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .feature-line {
+        grid-template-columns: 1fr;
+      }
+
+      .lightbox {
+        padding: 20px;
+      }
+
+      .lightbox img {
+        max-width: calc(100vw - 40px);
+        max-height: calc(100vh - 88px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topnav">
+    <div class="topnav-inner">
+      <a class="brand" href="#top">Chatbot A2UI</a>
+      <nav aria-label="presentation sections">
+        <a href="#product">제품</a>
+        <a href="#screens">화면</a>
+        <a href="#flow">작동</a>
+        <a href="#code">코드</a>
+        <a href="#roles">관리</a>
+        <a href="#expansion">확장</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Chatbot A2UI · Product Overview</p>
+          <h1>질문을 업무 화면으로 바꾸는 채팅 UI</h1>
+          <p class="lead">Chatbot A2UI는 사용자의 자연어 요청을 데이터 조회, 화면 선택, 액션 처리까지 연결해 채팅 안에서 바로 사용할 수 있는 업무 UI로 응답합니다.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#screens">실제 화면 보기</a>
+            <a class="btn" href="#flow">작동 방식 보기</a>
+          </div>
+        </div>
+
+        <div class="product-frame" aria-label="Chatbot A2UI product preview">
+          <div class="frame-bar">
+            <div class="frame-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span>chatbot-a2ui.product</span>
+          </div>
+          <div class="hero-shot">
+            <img src="/images/a2ui-poc/mcp-story/chat-table.png" alt="채팅 안에 표 화면이 렌더링된 Chatbot A2UI 화면" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="product" class="section">
+      <div class="container product-strip">
+        <div>
+          <div class="section-head">
+            <p class="eyebrow">무엇이 달라지나요?</p>
+            <h2>질문 하나가 데이터 조회와 조작 가능한 화면으로 이어집니다.</h2>
+            <p class="lead">A2UI는 질문을 이해하는 Agent, 화면 규칙을 관리하는 Admin, 실제 화면을 그리는 Renderer를 하나의 제품 경험으로 묶습니다.</p>
+          </div>
+
+          <div class="feature-list">
+            <div class="feature-line">
+              <span class="feature-index">01</span>
+              <div>
+                <h3>질문이 곧 조회 조건이 됩니다.</h3>
+                <p>문장 안의 기간, 환경, 상태 같은 단서를 읽어 바로 조회 조건으로 바꿉니다.</p>
+              </div>
+            </div>
+            <div class="feature-line">
+              <span class="feature-index">02</span>
+              <div>
+                <h3>Agent가 데이터 모양을 보고 알맞은 화면을 고릅니다.</h3>
+                <p>여러 행은 표로, 몇 개 항목은 카드 목록으로, 한 건 상세는 프로필 화면으로 구성합니다.</p>
+              </div>
+            </div>
+            <div class="feature-line">
+              <span class="feature-index">03</span>
+              <div>
+                <h3>채팅 안에서 바로 조작합니다.</h3>
+                <p>다음 페이지, 새로고침 같은 액션도 같은 화면 안에서 바로 처리합니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="prompt-board">
+          <figure class="generated-visual">
+            <span class="visual-tag">제품 장면</span>
+            <button class="visual-button" type="button" aria-label="제품 장면 원본 이미지 보기">
+              <img src="/images/a2ui-poc/product-intro/product-scene.png" alt="채팅 요청이 응답 영역 안에서 표 화면으로 바뀌는 제품 장면" />
+            </button>
+            <figcaption>자연어 요청이 채팅 응답 영역 안에서 구조화된 업무 화면으로 바뀌는 장면입니다.</figcaption>
+          </figure>
+          <figure class="generated-visual">
+            <span class="visual-tag">동적 UI</span>
+            <button class="visual-button" type="button" aria-label="동적 UI 원본 이미지 보기">
+              <img src="/images/a2ui-poc/product-intro/dynamic-ui.png" alt="하나의 채팅 요청에서 표, 카드 목록, 상세 화면으로 분기되는 구조" />
+            </button>
+            <figcaption>같은 채팅 입력에서 데이터 모양에 따라 표, 카드 목록, 상세 화면으로 갈라지는 구조입니다.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="screens" class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">어떤 화면으로 보여주나요?</p>
+          <h2>같은 배포 데이터도 목적에 따라 다른 화면으로 보여줍니다.</h2>
+          <p class="lead">목록 비교는 표, 빠른 훑어보기는 카드 목록, 한 건 분석은 프로필 화면으로 나뉩니다. 아래 화면은 Agent의 선택 결과를 보여주는 예시입니다.</p>
+        </div>
+
+        <div class="screen-grid">
+          <article class="screen-card">
+            <button class="screen-button" type="button" aria-label="표 화면 원본 이미지 보기">
+              <img src="/images/a2ui-poc/mcp-story/chat-table.png" alt="여러 행을 비교하는 표 화면 응답" />
+            </button>
+            <div>
+              <h3>표 화면</h3>
+              <p>여러 행을 비교해야 하는 요청은 페이지 이동이 가능한 표로 표시됩니다.</p>
+            </div>
+          </article>
+          <article class="screen-card">
+            <button class="screen-button" type="button" aria-label="카드 목록 화면 원본 이미지 보기">
+              <img src="/images/a2ui-poc/mcp-story/chat-card-list.png" alt="항목을 빠르게 훑는 카드 목록 응답" />
+            </button>
+            <div>
+              <h3>카드 목록 화면</h3>
+              <p>몇 개 항목을 빠르게 훑어보는 요청은 카드 목록으로 바뀝니다.</p>
+            </div>
+          </article>
+          <article class="screen-card">
+            <button class="screen-button" type="button" aria-label="프로필 화면 원본 이미지 보기">
+              <img src="/images/a2ui-poc/mcp-story/chat-profile.png" alt="한 건을 자세히 보는 프로필 화면 응답" />
+            </button>
+            <div>
+              <h3>프로필 화면</h3>
+              <p>한 건을 자세히 보는 요청은 프로필 중심 화면으로 표시됩니다.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="flow" class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">어떻게 작동할까요?</p>
+          <h2>Agent가 Admin 템플릿을 MCP로 호출하고, Renderer가 화면에 표시합니다.</h2>
+          <p class="lead">사용자 메시지가 들어오면 Chatbot Agent는 요청 의도를 판단하고, Admin MCP Tool을 통해 조회와 화면 구성을 진행합니다. 마지막에는 채팅 화면 렌더러가 검증된 컴포넌트로 결과를 표시합니다.</p>
+        </div>
+
+        <figure class="generated-visual runtime-visual">
+          <button class="visual-button" type="button" aria-label="A2UI 작동 순서 이미지 원본 보기">
+            <img src="/images/a2ui-poc/product-intro/runtime-flow-v2.png" alt="A2UI가 사용자 질문에서 Agent 판단, Admin MCP 호출, API와 템플릿 선택, 파라미터 추출, API 실행과 Data Profile, Render Plan과 SurfaceEnvelope를 거쳐 Renderer 표시로 이어지는 8단계 작동 순서" />
+          </button>
+        </figure>
+      </div>
+    </section>
+
+    <section id="code" class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">어떻게 연동하나요?</p>
+          <h2>코드는 네 지점으로 연결됩니다.</h2>
+          <p class="lead">제품 설명 이후에는 Admin MCP Tool 등록, Agent SDK 호출, Chatbot Agent의 화면 설계도 처리, 채팅 화면 렌더러 연결만 확인하면 됩니다.</p>
+        </div>
+
+        <div class="code-tabs" role="tablist" aria-label="code surfaces">
+          <button class="code-tab" role="tab" aria-selected="true" aria-controls="code-mcp" id="tab-mcp" data-target="code-mcp">Admin MCP Tool</button>
+          <button class="code-tab" role="tab" aria-selected="false" aria-controls="code-agent" id="tab-agent" data-target="code-agent">Agent SDK</button>
+          <button class="code-tab" role="tab" aria-selected="false" aria-controls="code-chat" id="tab-chat" data-target="code-chat">Chatbot Agent</button>
+          <button class="code-tab" role="tab" aria-selected="false" aria-controls="code-renderer" id="tab-renderer" data-target="code-renderer">채팅 화면 렌더러</button>
+        </div>
+
+        <div>
+          <div class="code-panel" id="code-mcp" role="tabpanel" aria-labelledby="tab-mcp" data-active="true">
+<pre class="code"><code><span class="muted">// Admin MCP Tool</span>
+server.tool(
+  "a2ui.runDataQuery",
+  "자연어 데이터 조회 요청을 화면 설계도로 변환합니다.",
+  async ({ input, history }) =&gt; {
+    const result = await runDataA2UIQuery({
+      input,
+      history
+    });
+
+    return {
+      content: [{
+        type: "text",
+        text: JSON.stringify(result)
+      }]
+    };
+  }
+);</code></pre>
+          </div>
+
+          <div class="code-panel" id="code-agent" role="tabpanel" aria-labelledby="tab-agent">
+<pre class="code"><code><span class="muted">// Agent SDK</span>
+export async function runDataQuery(client, options) {
+  return await client.callTool(
+    "a2ui.runDataQuery",
+    {
+      input: options.input,
+      history: options.history ?? []
+    }
+  );
+}</code></pre>
+          </div>
+
+          <div class="code-panel" id="code-chat" role="tabpanel" aria-labelledby="tab-chat">
+<pre class="code"><code><span class="muted">// Chatbot Agent entry</span>
+const result = await runDataQuery(client, {
+  input,
+  history
+});
+
+if (result.type === "surface") {
+  return {
+    surface: normalizeMcpSurface(result.surface)
+  };
+}</code></pre>
+          </div>
+
+          <div class="code-panel" id="code-renderer" role="tabpanel" aria-labelledby="tab-renderer">
+<pre class="code"><code><span class="muted">// Chatting UI Renderer</span>
+function ChatMessage({ message }) {
+  if (message.surface) {
+    return (
+      &lt;SurfaceRenderer
+        surface={message.surface}
+        onAction={handleSurfaceAction}
+      /&gt;
+    );
+  }
+
+  return &lt;MarkdownMessage content={message.content} /&gt;;
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roles" class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">누가 관리하고, 누가 사용하나요?</p>
+          <h2>우리가 관리하고, 사용자는 사용만 하도록 합니다.</h2>
+          <p class="lead">제품의 핵심은 역할 분리입니다. 라이브러리 개발팀은 UI 부품과 Admin 규칙을 관리하고, 최종 사용자는 자연어로 요청한 뒤 결과 화면을 사용합니다.</p>
+        </div>
+
+        <div class="role-split">
+          <div class="role-panel">
+            <p class="eyebrow">Library Team</p>
+            <h3>관리하는 것</h3>
+            <ul>
+              <li>재사용 가능한 Component UI</li>
+              <li>API와 데이터 연결 규칙</li>
+              <li>화면 설계도 계약과 액션 정의</li>
+              <li>채팅 화면 렌더러</li>
+            </ul>
+          </div>
+          <div class="role-panel user">
+            <p class="eyebrow">End User</p>
+            <h3>사용하는 것</h3>
+            <ul>
+              <li>자연어 질문 입력</li>
+              <li>MCP나 라이브러리로 쉽게 연동된 업무 화면 사용</li>
+              <li>응답 영역에 표시된 업무 화면 확인</li>
+              <li>다음 페이지, 새로고침 같은 화면 안 액션 사용</li>
+              <li>UI 종류나 API 이름은 몰라도 되는 사용 경험</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="expansion" class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">어디까지 확장할 수 있나요?</p>
+          <h2>템플릿 선택에서 시작해, 패턴 생성과 데이터 기반 UI로 확장됩니다.</h2>
+          <p class="lead">현재 A2UI는 Admin에 미리 등록한 화면 템플릿을 Agent가 선택해 보여주는 구조입니다. 같은 기반 위에서 정해진 패턴 안의 UI 생성, 더 나아가 사용 데이터 기반 화면 제안까지 확장할 수 있습니다.</p>
+        </div>
+
+        <figure class="generated-visual expansion-visual">
+          <button class="visual-button" type="button" aria-label="A2UI 확장 로드맵 이미지 원본 보기">
+            <img src="/images/a2ui-poc/product-intro/expansion-roadmap-v2.png" alt="A2UI가 템플릿 선택에서 시작해 패턴 생성과 데이터 기반 UI 제안으로 확장되는 3단계 로드맵" />
+          </button>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="이미지 원본 보기">
+    <button class="lightbox-close" type="button" aria-label="이미지 닫기">×</button>
+    <img alt="" />
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>Chatbot A2UI · Product Overview</span>
+      <span>Component UI · Admin Tool · Chat Renderer</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const tabs = document.querySelectorAll(".code-tab");
+      const panels = document.querySelectorAll(".code-panel");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = lightbox ? lightbox.querySelector("img") : null;
+      const lightboxClose = lightbox ? lightbox.querySelector(".lightbox-close") : null;
+      const imageButtons = document.querySelectorAll(".screen-button, .visual-button");
+      let lastTrigger = null;
+
+      function activate(targetId) {
+        tabs.forEach(function (tab) {
+          const isActive = tab.dataset.target === targetId;
+          tab.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+        panels.forEach(function (panel) {
+          panel.dataset.active = panel.id === targetId ? "true" : "false";
+        });
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          activate(tab.dataset.target);
+        });
+        tab.addEventListener("keydown", function (event) {
+          if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+          event.preventDefault();
+          const order = Array.from(tabs);
+          const idx = order.indexOf(tab);
+          const next = event.key === "ArrowRight"
+            ? order[(idx + 1) % order.length]
+            : order[(idx - 1 + order.length) % order.length];
+          next.focus();
+          activate(next.dataset.target);
+        });
+      });
+
+      function openLightbox(trigger) {
+        if (!lightbox || !lightboxImage || !lightboxClose) return;
+        const image = trigger.querySelector("img");
+        if (!image) return;
+        lastTrigger = trigger;
+        lightboxImage.src = image.currentSrc || image.src;
+        lightboxImage.alt = image.alt || "";
+        lightbox.dataset.open = "true";
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        lightboxClose.focus();
+      }
+
+      function closeLightbox() {
+        if (!lightbox || !lightboxImage) return;
+        lightbox.dataset.open = "false";
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxImage.removeAttribute("src");
+        lightboxImage.alt = "";
+        document.body.style.overflow = "";
+        if (lastTrigger) {
+          lastTrigger.focus();
+          lastTrigger = null;
+        }
+      }
+
+      imageButtons.forEach(function (trigger) {
+        trigger.addEventListener("click", function () {
+          openLightbox(trigger);
+        });
+      });
+
+      if (lightboxClose) {
+        lightboxClose.addEventListener("click", closeLightbox);
+      }
+
+      if (lightbox) {
+        lightbox.addEventListener("click", function (event) {
+          if (event.target === lightbox) closeLightbox();
+        });
+      }
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && lightbox && lightbox.dataset.open === "true") {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
