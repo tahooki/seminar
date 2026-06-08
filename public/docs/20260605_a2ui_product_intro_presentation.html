@@ -650,7 +650,6 @@
         <a href="#product">제품</a>
         <a href="#screens">화면</a>
         <a href="#flow">작동</a>
-        <a href="#code">코드</a>
         <a href="#roles">관리</a>
         <a href="#expansion">확장</a>
       </nav>
@@ -686,31 +685,31 @@
       <div class="container product-strip">
         <div>
           <div class="section-head">
-            <p class="eyebrow">무엇이 달라지나요?</p>
-            <h2>질문 하나가 등록된 조회 결과 화면으로 이어집니다.</h2>
-            <p class="lead">A2UI는 질문을 이해하는 Agent, 화면 규칙을 관리하는 Admin, 실제 화면을 그리는 Renderer를 하나의 제품 경험으로 묶습니다.</p>
+            <p class="eyebrow">어디에 붙나요?</p>
+            <h2>기존 Agent/API는 그대로 두고, 조회 결과 화면만 A2UI로 붙입니다.</h2>
+            <p class="lead">고객 서비스 Agent가 기존 API를 호출하면, A2UI Admin MCP가 API 결과와 등록된 템플릿을 비교해 채팅 안 업무 화면으로 표시합니다.</p>
           </div>
 
           <div class="feature-list">
             <div class="feature-line">
               <span class="feature-index">01</span>
               <div>
-                <h3>질문이 곧 조회 조건이 됩니다.</h3>
-                <p>문장 안의 기간, 환경, 상태 같은 단서를 읽어 바로 조회 조건으로 바꿉니다.</p>
+                <h3>고객 서비스 Agent가 기존 API를 호출합니다.</h3>
+                <p>의도 판단, 권한 확인, 업무 데이터 조회는 기존 고객 서비스 흐름을 유지합니다.</p>
               </div>
             </div>
             <div class="feature-line">
               <span class="feature-index">02</span>
               <div>
-                <h3>Agent가 등록된 화면 규칙 중 하나를 고릅니다.</h3>
-                <p>조회 결과가 여러 행이면 표로, 몇 개 항목이면 카드 목록으로, 한 건 상세면 프로필 화면으로 표시합니다.</p>
+                <h3>A2UI Admin MCP가 템플릿을 선택합니다.</h3>
+                <p>API 결과와 등록된 템플릿 계약을 비교해 표, 카드 목록, 프로필 중 맞는 화면을 고릅니다.</p>
               </div>
             </div>
             <div class="feature-line">
               <span class="feature-index">03</span>
               <div>
-                <h3>채팅 안에 결과 화면을 바로 표시합니다.</h3>
-                <p>호출 결과 데이터는 응답 영역 안에서 읽기 쉬운 업무 화면으로 렌더링됩니다.</p>
+                <h3>Renderer가 채팅 안에 표시합니다.</h3>
+                <p>변환된 화면 데이터는 사용자가 보는 조회 결과 화면으로 렌더링됩니다.</p>
               </div>
             </div>
           </div>
@@ -779,95 +778,15 @@
       <div class="container">
         <div class="section-head">
           <p class="eyebrow">어떻게 작동할까요?</p>
-          <h2>Admin에 등록된 API와 템플릿을 호출하고, Renderer가 결과를 표시합니다.</h2>
-          <p class="lead">사용자 메시지가 들어오면 Chatbot Agent는 Admin MCP Tool에서 등록된 API와 화면 템플릿을 선택해 단방향 조회를 실행합니다. 마지막에는 채팅 화면 렌더러가 조회 결과를 검증된 컴포넌트로 표시합니다.</p>
+          <h2>고객 Agent가 API를 호출하고, A2UI가 결과 화면을 만듭니다.</h2>
+          <p class="lead">1-3단계는 고객 서비스의 기존 Agent/API 흐름이고, 4-8단계부터 A2UI Admin MCP와 Renderer가 조회 결과를 화면화합니다.</p>
         </div>
 
         <figure class="generated-visual runtime-visual">
           <button class="visual-button" type="button" aria-label="A2UI 작동 순서 이미지 원본 보기">
-            <img src="/images/a2ui-poc/product-intro/slides/slide-06-runtime-flow.png" alt="A2UI가 사용자 질문, Agent 판단, Admin MCP 호출, API 선택, API 조회 조건 생성, API 실행, 템플릿 선택을 거쳐 Renderer 화면 표시로 이어지는 8단계 작동 순서" />
+            <img src="/images/a2ui-poc/product-intro/slides/slide-06-runtime-flow.png" alt="고객 서비스의 사용자 질문, Agent 판단, API 호출 이후 A2UI Admin MCP 호출, API 데이터와 UI 템플릿 비교, 템플릿 선택, 데이터 변환, 화면 표시로 이어지는 8단계 작동 순서" />
           </button>
         </figure>
-      </div>
-    </section>
-
-    <section id="code" class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">어떻게 연동하나요?</p>
-          <h2>코드는 네 지점으로 연결됩니다.</h2>
-          <p class="lead">제품 설명 이후에는 Admin MCP Tool 등록, Agent SDK 호출, Chatbot Agent의 조회 결과 처리, 채팅 화면 렌더러 연결만 확인하면 됩니다.</p>
-        </div>
-
-        <div class="code-tabs" role="tablist" aria-label="code surfaces">
-          <button class="code-tab" role="tab" aria-selected="true" aria-controls="code-mcp" id="tab-mcp" data-target="code-mcp">Admin MCP Tool</button>
-          <button class="code-tab" role="tab" aria-selected="false" aria-controls="code-agent" id="tab-agent" data-target="code-agent">Agent SDK</button>
-          <button class="code-tab" role="tab" aria-selected="false" aria-controls="code-chat" id="tab-chat" data-target="code-chat">Chatbot Agent</button>
-          <button class="code-tab" role="tab" aria-selected="false" aria-controls="code-renderer" id="tab-renderer" data-target="code-renderer">채팅 화면 렌더러</button>
-        </div>
-
-        <div>
-          <div class="code-panel" id="code-mcp" role="tabpanel" aria-labelledby="tab-mcp" data-active="true">
-<pre class="code"><code><span class="muted">// Admin MCP Tool</span>
-server.tool(
-  "a2ui.runDataQuery",
-  "자연어 데이터 조회 요청을 등록된 화면 응답으로 변환합니다.",
-  async ({ input, history }) =&gt; {
-    const result = await runDataA2UIQuery({
-      input,
-      history
-    });
-
-    return {
-      content: [{
-        type: "text",
-        text: JSON.stringify(result)
-      }]
-    };
-  }
-);</code></pre>
-          </div>
-
-          <div class="code-panel" id="code-agent" role="tabpanel" aria-labelledby="tab-agent">
-<pre class="code"><code><span class="muted">// Agent SDK</span>
-export async function runDataQuery(client, options) {
-  return await client.callTool(
-    "a2ui.runDataQuery",
-    {
-      input: options.input,
-      history: options.history ?? []
-    }
-  );
-}</code></pre>
-          </div>
-
-          <div class="code-panel" id="code-chat" role="tabpanel" aria-labelledby="tab-chat">
-<pre class="code"><code><span class="muted">// Chatbot Agent entry</span>
-const result = await runDataQuery(client, {
-  input,
-  history
-});
-
-if (result.type === "surface") {
-  return {
-    surface: normalizeMcpSurface(result.surface)
-  };
-}</code></pre>
-          </div>
-
-          <div class="code-panel" id="code-renderer" role="tabpanel" aria-labelledby="tab-renderer">
-<pre class="code"><code><span class="muted">// Chatting UI Renderer</span>
-function ChatMessage({ message }) {
-  if (message.surface) {
-    return (
-      &lt;SurfaceRenderer surface={message.surface} /&gt;
-    );
-  }
-
-  return &lt;MarkdownMessage content={message.content} /&gt;;
-}</code></pre>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -875,28 +794,29 @@ function ChatMessage({ message }) {
       <div class="container">
         <div class="section-head">
           <p class="eyebrow">누가 관리하고, 누가 사용하나요?</p>
-          <h2>우리가 관리하고, 사용자는 사용만 하도록 합니다.</h2>
-          <p class="lead">제품의 핵심은 역할 분리입니다. 라이브러리 개발팀은 UI 부품과 Admin 규칙을 관리하고, 최종 사용자는 자연어로 요청한 뒤 결과 화면을 사용합니다.</p>
+          <h2>고객 서비스는 Agent와 API를 유지하고, A2UI는 결과 화면을 맡습니다.</h2>
+          <p class="lead">제품의 핵심은 역할 분리입니다. 고객 서비스는 기존 Agent와 API를 유지하고, A2UI Library Team은 컴포넌트와 Admin MCP 템플릿, Renderer를 관리합니다.</p>
         </div>
 
         <div class="role-split">
           <div class="role-panel">
-            <p class="eyebrow">Library Team</p>
-            <h3>관리하는 것</h3>
+            <p class="eyebrow">Customer Service</p>
+            <h3>유지하는 것</h3>
             <ul>
-              <li>재사용 가능한 Component UI</li>
-              <li>API와 데이터 연결 규칙</li>
-              <li>조회 응답 계약과 화면 데이터 정의</li>
-              <li>채팅 화면 렌더러</li>
+              <li>고객 서비스 Agent</li>
+              <li>기존 API 호출 로직</li>
+              <li>업무 데이터와 권한</li>
+              <li>A2UI Admin MCP 호출 지점</li>
             </ul>
           </div>
           <div class="role-panel user">
-            <p class="eyebrow">End User</p>
-            <h3>사용하는 것</h3>
+            <p class="eyebrow">A2UI Library Team</p>
+            <h3>관리하는 것</h3>
             <ul>
-              <li>자연어 질문 입력</li>
-              <li>MCP나 라이브러리로 쉽게 연동된 업무 화면 사용</li>
-              <li>응답 영역에 표시된 조회 결과 확인</li>
+              <li>재사용 가능한 Component UI</li>
+              <li>Admin MCP 템플릿 계약</li>
+              <li>API 결과 데이터 매핑</li>
+              <li>채팅 화면 Renderer</li>
             </ul>
           </div>
         </div>
@@ -913,7 +833,7 @@ function ChatMessage({ message }) {
 
         <figure class="generated-visual expansion-visual">
           <button class="visual-button" type="button" aria-label="A2UI 확장 로드맵 이미지 원본 보기">
-            <img src="/images/a2ui-poc/product-intro/expansion-roadmap-v2.png" alt="A2UI가 템플릿 선택에서 시작해 패턴 생성과 데이터 기반 UI 제안으로 확장되는 3단계 로드맵" />
+            <img src="/images/a2ui-poc/product-intro/slides/slide-09-expansion-roadmap.png" alt="A2UI가 등록된 템플릿 선택에서 시작해 패턴 안의 UI 생성과 사용 데이터 기반 UI 제안으로 확장되는 3단계 로드맵" />
           </button>
         </figure>
       </div>
